@@ -5,12 +5,7 @@ log "start of elixir::default recipe" do
   level :debug
 end
 
-# TODO: git::default didn't work in some OSs, and temporarily changed to git::source
-if node['platform_family'] == 'fedora'
-  include_recipe "git::default"
-else
-  include_recipe "git::source"
-end
+include_recipe "git::default"
 
 # install some packages required by erlang in advance, for avoiding timeout error during erlang installation.
 if platform?('ubuntu')
